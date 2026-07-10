@@ -145,4 +145,86 @@
 
     <script>
         const plan5Link = "https://square.link/u/M267qDh8";
-        const plan7Link = "https://square.
+        const plan7Link = "https://square.link/u/FQ0c1Hm2";
+
+        const orderForm = document.getElementById('order-form');
+        const historyListEl = document.getElementById('order-history-list');
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.app-page').forEach(p => {
+                p.classList.remove('active');
+            });
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            document.querySelectorAll('.clickable-tab').forEach(b => {
+                b.classList.remove('text-emerald-400', 'font-bold');
+                b.classList.add('text-gray-400');
+            });
+            const targetBtn = document.getElementById('btn-' + pageId);
+            if (targetBtn) {
+                targetBtn.classList.remove('text-gray-400');
+                targetBtn.classList.add('text-emerald-400', 'font-bold');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        let appState = JSON.parse(localStorage.getItem('tp_protein_club_state')) || { totalProtein: 0, orders: [] };
+
+        function updateUI() {
+            if (appState.orders.length === 0) {
+                historyListEl.innerHTML = `<p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>`;
+                return;
+            }
+            
+            historyListEl.innerHTML = appState.orders.map((o, idx) => {
+                const formattedDate = o.timestamp ? new Date(o.timestamp).toLocaleDateString() : 'Active';
+                return `
+                    <div class="bg-gray-950/40 border border-gray-800 rounded-xl p-4 flex flex-col space-y-2">
+                        <div class="flex justify-between items-center">
+                            <p class="font-bold text-gray-200 text-base">${o.plan === '5' ? '5-Day Intensive Plan' : '7-Day Full-Week Fuel'}</p>
+                            <span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-900/40 font-bold">PAID</span>
+                        </div>
+                        <p class="text-xs text-gray-400">🗓️ Pickup Area: Counter (Every Saturday)</p>
+                        <p class="text-[10px] text-gray-600">Ordered on: ${formattedDate}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function checkPaymentCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const payStatus = urlParams.get('pay');
+            const confirmedPlan = urlParams.get('plan');
+
+            if (payStatus === 'success' && confirmedPlan) {
+                const validOrder = {
+                    plan: confirmedPlan,
+                    timestamp: new Date().getTime()
+                };
+
+                if (appState.orders.length === 0 || (new Date().getTime() - appState.orders[0].timestamp > 10000)) {
+                    appState.orders.unshift(validOrder);
+                    localStorage.setItem('tp_protein_club_state', JSON.stringify(appState));
+                    alert("💳 Subscription Payment Verified!\nYour receipt has been added to history.");
+                }
+                
+                window.history.replaceState({}, document.title, window.location.pathname);
+                switchPage('history');
+            }
+        }
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+            const targetLink = selectedPlan === "5" ? plan5Link : plan7Link;
+            window.location.href = targetLink;
+        });
+
+        checkPaymentCallback();
+        updateUI();
+    </script>
+</body>
+</html>
