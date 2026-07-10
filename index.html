@@ -16,7 +16,6 @@
 </head>
 <body class="p-4 max-w-md mx-auto pb-32">
 
-    <!-- HEADER -->
     <header class="flex justify-between items-center my-6 border-b border-gray-800 pb-4">
         <div>
             <h1 class="text-3xl font-black tracking-tight text-emerald-400">T&P</h1>
@@ -28,15 +27,12 @@
         </div>
     </header>
 
-    <!-- HOME PAGE -->
     <main id="page-home" class="app-page active space-y-6">
-        <!-- 🎯 오늘의 단백질 식사 결제 섹션 -->
         <section class="bg-gradient-to-br from-emerald-950/40 to-gray-900 border border-emerald-500/30 rounded-2xl p-5 shadow-xl relative overflow-hidden">
             <div class="absolute top-0 right-0 bg-emerald-500 text-gray-950 text-[10px] font-black uppercase px-3 py-1 rounded-bl-xl tracking-wider z-10">
                 Daily Fresh
             </div>
             
-            <!-- 📸 [파일명 반영 완료] 사장님의 진짜 도시락 사진 연동 영역 -->
             <div class="w-full h-44 rounded-xl overflow-hidden mb-4 border border-gray-800">
                 <img src="IMG_4262.png" class="w-full h-full object-cover" alt="Today's Protein Meal" onerror="this.style.display='none';">
             </div>
@@ -51,7 +47,6 @@
             </a>
         </section>
 
-        <!-- 정기구독 안내 카드 -->
         <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Weekly Fueling</h2>
             <h3 class="text-xl font-extrabold text-white mb-2">Weekly Subscription</h3>
@@ -64,154 +59,9 @@
         </section>
     </main>
 
-    <!-- ORDER PAGE -->
     <main id="page-order" class="app-page">
         <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
             <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2">Order & Schedule Subscription</h2>
             <form id="order-form" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Select Your Plan</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="border border-gray-700 rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950/20">
-                            <input type="radio" name="plan" value="5" checked class="sr-only">
-                            <span class="font-bold text-sm text-white">5-Day Plan</span>
-                            <span class="text-xs text-emerald-400 font-bold mt-1">$42 / wk</span>
-                        </label>
-                        <label class="border border-gray-700 rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950/20">
-                            <input type="radio" name="plan" value="7" class="sr-only">
-                            <span class="font-bold text-sm text-white">7-Day Plan</span>
-                            <span class="text-xs text-emerald-400 font-bold mt-1">$59 / wk</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Choose Your Saturday Pickup Date</label>
-                    <input type="date" id="pickup-date" required class="w-full bg-gray-800 border border-gray-700 rounded-xl p-3 text-white focus:outline-none focus:border-emerald-500 [color-scheme:dark]">
-                    <p id="weekday-preview" class="text-xs text-emerald-400 mt-2 font-bold"></p>
-                </div>
-
-                <div class="bg-amber-950/20 border border-amber-900/50 rounded-xl p-3 text-xs text-amber-400 font-semibold leading-relaxed">
-                    💡 Note: Subscription meals are freshly packed and ready for pickup every Saturday. Please double-check your chosen date!
-                </div>
-
-                <button type="submit" class="w-full bg-emerald-500 text-gray-950 font-black py-4 rounded-xl hover:bg-emerald-400 transition cursor-pointer shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-sm">
-                    Proceed to Secure Checkout
-                </button>
-            </form>
-        </section>
-    </main>
-
-    <!-- HISTORY PAGE -->
-    <main id="page-history" class="app-page">
-        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">My Order History</h2>
-            <div id="order-history-list" class="space-y-4 text-sm">
-                <p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- NAVIGATION BOTTOM BAR -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-gray-950 border-t border-gray-800 max-w-md mx-auto px-6 py-4 flex justify-around z-50">
-        <button type="button" onclick="switchPage('home')" id="btn-home" class="nav-btn flex flex-col items-center text-emerald-400 font-bold text-xs">
-            <span class="text-lg">🏠</span><span class="mt-1">Home</span>
-        </button>
-        <button type="button" onclick="switchPage('order')" id="btn-order" class="nav-btn flex flex-col items-center text-gray-400 text-xs font-bold">
-            <span class="text-lg">🥩</span><span class="mt-1">Order</span>
-        </button>
-        <button type="button" onclick="switchPage('history')" id="btn-history" class="nav-btn flex flex-col items-center text-gray-400 text-xs font-bold">
-            <span class="text-lg">📊</span><span class="mt-1">History</span>
-        </button>
-    </nav>
-
-    <script>
-        const plan5Link = "https://square.link/u/M267qDh8";
-        const plan7Link = "https://square.link/u/FQ0c1Hm2";
-
-        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const orderForm = document.getElementById('order-form');
-        const historyListEl = document.getElementById('order-history-list');
-        const pickupDateInput = document.getElementById('pickup-date');
-        const weekdayPreviewEl = document.getElementById('weekday-preview');
-
-        const todayStr = new Date().toISOString().split('T')[0];
-        pickupDateInput.min = todayStr;
-
-        function switchPage(pageId) {
-            document.querySelectorAll('.app-page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => {
-                b.classList.remove('text-emerald-400', 'font-bold');
-                b.classList.add('text-gray-400');
-            });
-            document.getElementById('page-' + pageId).classList.add('active');
-            const targetBtn = document.getElementById('btn-' + pageId);
-            targetBtn.classList.remove('text-gray-400');
-            targetBtn.classList.add('text-emerald-400', 'font-bold');
-        }
-
-        pickupDateInput.addEventListener('change', function() {
-            if (this.value) {
-                const dateObj = new Date(this.value + 'T00:00:00');
-                const dayName = weekdays[dateObj.getDay()];
-                if (dayName !== "Saturday") {
-                    weekdayPreviewEl.innerHTML = `<span class="text-rose-400">⚠️ Note: You selected a ${dayName}. Standard subscription pickup is Saturday.</span>`;
-                } else {
-                    weekdayPreviewEl.innerHTML = `🎯 Perfect! Selected Saturday Pickup.`;
-                }
-            } else {
-                weekdayPreviewEl.textContent = '';
-            }
-        });
-
-        let appState = JSON.parse(localStorage.getItem('tp_protein_club_state')) || { totalProtein: 0, orders: [] };
-
-        function changePickupDate(index, newDate) {
-            if (!newDate) return;
-            appState.orders[index].date = newDate;
-            localStorage.setItem('tp_protein_club_state', JSON.stringify(appState));
-            updateUI();
-            alert("📅 Pickup date updated successfully!");
-        }
-
-        function updateUI() {
-            if (appState.orders.length === 0) {
-                historyListEl.innerHTML = `<p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>`;
-                return;
-            }
-            
-            historyListEl.innerHTML = appState.orders.map((o, idx) => {
-                const dateObj = new Date(o.date + 'T00:00:00');
-                const dayName = weekdays[dateObj.getDay()];
-                return `
-                    <div class="bg-gray-950/40 border border-gray-800 rounded-xl p-4 flex flex-col space-y-3">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <p class="font-bold text-gray-200 text-base">${o.plan === '5' ? '5-Day Intensive Plan' : '7-Day Full-Week Fuel'}</p>
-                                <p class="text-xs text-emerald-400 font-semibold mt-0.5">🗓️ Pickup on ${dayName}</p>
-                            </div>
-                        </div>
-                        <div class="pt-2 border-t border-gray-900 flex flex-col space-y-1.5">
-                            <label class="text-[11px] font-bold uppercase tracking-wider text-gray-400">Modify Pickup Date:</label>
-                            <input type="date" value="${o.date}" min="${todayStr}" onchange="changePickupDate(${idx}, this.value)" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-xs text-emerald-400 font-semibold focus:outline-none focus:border-emerald-500 [color-scheme:dark]">
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        orderForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
-            const chosenDate = pickupDateInput.value;
-
-            localStorage.setItem('tp_pending_date', chosenDate);
-
-            const targetLink = selectedPlan === "5" ? plan5Link : plan7Link;
-            window.location.href = targetLink;
-        });
-
-        updateUI();
-    </script>
-</body>
-</html>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-40
