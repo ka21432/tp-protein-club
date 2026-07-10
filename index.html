@@ -16,6 +16,7 @@
 </head>
 <body class="p-4 max-w-md mx-auto pb-32">
 
+    <!-- HEADER -->
     <header class="flex justify-between items-center my-6 border-b border-gray-800 pb-4">
         <div>
             <h1 class="text-3xl font-black tracking-tight text-emerald-400">T&P</h1>
@@ -23,29 +24,50 @@
         </div>
         <div class="text-right">
             <span class="text-xs text-gray-400">Welcome back,</span>
-            <p class="font-extrabold text-sm text-emerald-400">GYM RAT 🔥</p>
+            <p class="font-extrabold text-sm text-emerald-400">ELITE ATHLETE 🔥</p>
         </div>
     </header>
 
-    <main id="page-home" class="app-page active">
-        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 mb-6 shadow-xl">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Monthly Protein Intake Goal</h2>
-            <div class="flex items-baseline space-x-2">
-                <span id="total-protein" class="text-5xl font-black text-white">0</span>
-                <span class="text-xl font-bold text-emerald-400">/ 3000g</span>
+    <!-- HOME PAGE -->
+    <main id="page-home" class="app-page active space-y-6">
+        <!-- 🎯 오늘의 단백질 식사 결제 섹션 -->
+        <section class="bg-gradient-to-br from-emerald-950/40 to-gray-900 border border-emerald-500/30 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-gray-950 text-[10px] font-black uppercase px-3 py-1 rounded-bl-xl tracking-wider z-10">
+                Daily Fresh
             </div>
-            <div class="w-full bg-gray-800 h-3 rounded-full mt-4 overflow-hidden">
-                <div id="protein-progress" class="bg-emerald-500 h-full transition-all duration-500" style="width: 0%"></div>
+            
+            <!-- 📸 [파일명 반영 완료] 사장님의 진짜 도시락 사진 연동 영역 -->
+            <div class="w-full h-44 rounded-xl overflow-hidden mb-4 border border-gray-800">
+                <img src="IMG_4262.png" class="w-full h-full object-cover" alt="Today's Protein Meal" onerror="this.style.display='none';">
             </div>
+
+            <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">Hungry Right Now?</h2>
+            <h3 class="text-2xl font-black text-white leading-tight mb-2">Today's Protein Meal</h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                Grab a high-precision, fresh protein box directly at the counter today. No subscription required.
+            </p>
+            <a href="https://square.link/u/5pX1f2mX" class="block w-full text-center bg-emerald-500 text-gray-950 font-black py-3.5 rounded-xl hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/10 uppercase tracking-wider text-xs">
+                Order Single Meal Now 🥩
+            </a>
         </section>
-        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-4 text-center text-sm text-gray-400">
-            👋 Tap <span class="text-emerald-400 font-bold">"Order"</span> below to schedule your subscription.
-        </div>
+
+        <!-- 정기구독 안내 카드 -->
+        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Weekly Fueling</h2>
+            <h3 class="text-xl font-extrabold text-white mb-2">Weekly Subscription</h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                Want to secure your gains for the entire week? Save time and money by subscribing to our 5-Day or 7-Day meal prep plans.
+            </p>
+            <button type="button" onclick="switchPage('order')" class="w-full text-center bg-gray-800 border border-gray-700 text-gray-200 font-bold py-3 rounded-xl hover:bg-gray-700 transition text-xs uppercase tracking-wider cursor-pointer">
+                View Subscription Plans 📅
+            </button>
+        </section>
     </main>
 
+    <!-- ORDER PAGE -->
     <main id="page-order" class="app-page">
         <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
-            <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2">Order & Schedule Pickup</h2>
+            <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2">Order & Schedule Subscription</h2>
             <form id="order-form" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Select Your Plan</label>
@@ -64,13 +86,13 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Choose Your Pickup Date</label>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Choose Your Saturday Pickup Date</label>
                     <input type="date" id="pickup-date" required class="w-full bg-gray-800 border border-gray-700 rounded-xl p-3 text-white focus:outline-none focus:border-emerald-500 [color-scheme:dark]">
                     <p id="weekday-preview" class="text-xs text-emerald-400 mt-2 font-bold"></p>
                 </div>
 
                 <div class="bg-amber-950/20 border border-amber-900/50 rounded-xl p-3 text-xs text-amber-400 font-semibold leading-relaxed">
-                    💡 Please enter your selected pickup date in the "Note/Custom Field" box on the next Square checkout screen!
+                    💡 Note: Subscription meals are freshly packed and ready for pickup every Saturday. Please double-check your chosen date!
                 </div>
 
                 <button type="submit" class="w-full bg-emerald-500 text-gray-950 font-black py-4 rounded-xl hover:bg-emerald-400 transition cursor-pointer shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-sm">
@@ -80,15 +102,17 @@
         </section>
     </main>
 
+    <!-- HISTORY PAGE -->
     <main id="page-history" class="app-page">
         <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">My Pickup History</h2>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">My Order History</h2>
             <div id="order-history-list" class="space-y-4 text-sm">
                 <p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>
             </div>
         </section>
     </main>
 
+    <!-- NAVIGATION BOTTOM BAR -->
     <nav class="fixed bottom-0 left-0 right-0 bg-gray-950 border-t border-gray-800 max-w-md mx-auto px-6 py-4 flex justify-around z-50">
         <button type="button" onclick="switchPage('home')" id="btn-home" class="nav-btn flex flex-col items-center text-emerald-400 font-bold text-xs">
             <span class="text-lg">🏠</span><span class="mt-1">Home</span>
@@ -107,8 +131,6 @@
 
         const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const orderForm = document.getElementById('order-form');
-        const totalProteinEl = document.getElementById('total-protein');
-        const progressEl = document.getElementById('protein-progress');
         const historyListEl = document.getElementById('order-history-list');
         const pickupDateInput = document.getElementById('pickup-date');
         const weekdayPreviewEl = document.getElementById('weekday-preview');
@@ -132,7 +154,11 @@
             if (this.value) {
                 const dateObj = new Date(this.value + 'T00:00:00');
                 const dayName = weekdays[dateObj.getDay()];
-                weekdayPreviewEl.textContent = `🎯 Selected Pickup Day: ${dayName}`;
+                if (dayName !== "Saturday") {
+                    weekdayPreviewEl.innerHTML = `<span class="text-rose-400">⚠️ Note: You selected a ${dayName}. Standard subscription pickup is Saturday.</span>`;
+                } else {
+                    weekdayPreviewEl.innerHTML = `🎯 Perfect! Selected Saturday Pickup.`;
+                }
             } else {
                 weekdayPreviewEl.textContent = '';
             }
@@ -149,9 +175,6 @@
         }
 
         function updateUI() {
-            totalProteinEl.textContent = appState.totalProtein;
-            progressEl.style.width = Math.min((appState.totalProtein / 3000) * 100, 100) + '%';
-            
             if (appState.orders.length === 0) {
                 historyListEl.innerHTML = `<p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>`;
                 return;
@@ -167,7 +190,6 @@
                                 <p class="font-bold text-gray-200 text-base">${o.plan === '5' ? '5-Day Intensive Plan' : '7-Day Full-Week Fuel'}</p>
                                 <p class="text-xs text-emerald-400 font-semibold mt-0.5">🗓️ Pickup on ${dayName}</p>
                             </div>
-                            <span class="inline-block bg-emerald-950 text-emerald-400 text-xs font-bold px-2 py-1 rounded border border-emerald-900/50">+${o.proteinGained}g</span>
                         </div>
                         <div class="pt-2 border-t border-gray-900 flex flex-col space-y-1.5">
                             <label class="text-[11px] font-bold uppercase tracking-wider text-gray-400">Modify Pickup Date:</label>
