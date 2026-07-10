@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>T&P PROTEIN CLUB</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f3f4f6; -webkit-tap-highlight-color: transparent; }
         
-        /* 페이지 전환용 핵심 순정 스타일 */
+        /* 페이지 전환용 코어 클래스 */
         .app-page { display: none !important; }
         .app-page.active { display: block !important; animation: fadeIn 0.15s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* 🚨 브라우저 버그를 무조건 찢고 하단 바를 고정시키는 초강력 CSS 강제 고정 레이아웃 */
+        /* 하단 내비게이션 바 절대 고정 레이아웃 */
         .safari-fixed-nav {
             position: fixed !important;
             bottom: 0 !important;
@@ -41,14 +41,11 @@
             cursor: pointer !important; 
             pointer-events: auto !important;
         }
-        
-        /* 밀플랜 선택 라디오 버튼이 폰에서 확실하게 클릭 영역을 잡도록 패치 */
         .plan-box-label {
             display: flex !important;
             flex-direction: column !important;
             cursor: pointer !important;
             pointer-events: auto !important;
-            position: relative !important;
         }
     </style>
 </head>
@@ -66,4 +63,14 @@
     </header>
 
     <main id="page-home" class="app-page active space-y-6">
-        <section class="bg-gradient-to-br from-emerald-950
+        <section class="bg-gradient-to-br from-emerald-950/40 to-gray-900 border border-emerald-500/30 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-gray-950 text-[10px] font-black uppercase px-3 py-1 rounded-bl-xl tracking-wider z-10">
+                Daily Fresh
+            </div>
+            
+            <div class="w-full h-44 rounded-xl overflow-hidden mb-4 border border-gray-800">
+                <img src="IMG_4262.png" class="w-full h-full object-cover" alt="Today's Protein Meal" onerror="this.style.display='none';">
+            </div>
+
+            <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">Hungry Right Now?</h2>
+            <h3 class="text
