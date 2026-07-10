@@ -75,9 +75,16 @@
             </a>
         </section>
 
-        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
+        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-amber-500 text-gray-950 text-[9px] font-black uppercase px-2.5 py-1 rounded-bl-xl tracking-wider">
+                💥 100g Protein Assured
+            </div>
+
             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Weekly Fueling</h2>
             <h3 class="text-xl font-extrabold text-white mb-2">Weekly Subscription</h3>
+            <p class="text-xs text-emerald-400 font-bold mb-2 flex items-center gap-1">
+                <span>🎯</span> Hit your daily macro effortlessly with 100g of pure protein every single day.
+            </p>
             <p class="text-xs text-gray-400 leading-relaxed mb-4">
                 Want to secure your gains for the entire week? Save time and money by subscribing to our 5-Day or 7-Day meal prep plans.
             </p>
@@ -90,141 +97,13 @@
 
     <main id="page-order" class="app-page">
         <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
-            <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2">Order & Schedule Subscription</h2>
-            <form id="order-form" class="space-y-4">
+            <h2 class="text-lg font-bold text-white mb-1 border-b border-gray-800 pb-2">Order Subscription</h2>
+            
+            <form id="order-form" class="space-y-4 pt-2">
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Select Your Plan</label>
                     <div class="grid grid-cols-2 gap-3">
                         <label class="border border-gray-700 rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950/20">
                             <input type="radio" name="plan" value="5" checked class="sr-only">
-                            <span class="font-bold text-sm text-white">5-Day Plan</span>
-                            <span class="text-xs text-emerald-400 font-bold mt-1">$42 / wk</span>
-                        </label>
-                        <label class="border border-gray-700 rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950/20">
-                            <input type="radio" name="plan" value="7" class="sr-only">
-                            <span class="font-bold text-sm text-white">7-Day Plan</span>
-                            <span class="text-xs text-emerald-400 font-bold mt-1">$59 / wk</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="bg-amber-950/20 border border-amber-900/50 rounded-xl p-3 text-xs text-amber-400 font-semibold leading-relaxed">
-                    📢 Notice: Subscription meals are freshly packed and <strong>ready for pickup every Saturday</strong>. No date selection required!
-                </div>
-
-                <button type="submit" class="w-full bg-emerald-500 text-gray-950 font-black py-4 rounded-xl hover:bg-emerald-400 transition cursor-pointer shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-sm">
-                    Proceed to Secure Checkout
-                </button>
-            </form>
-        </section>
-    </main>
-
-    <main id="page-history" class="app-page">
-        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">My Order History</h2>
-            <div id="order-history-list" class="space-y-4 text-sm">
-                <p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>
-            </div>
-        </section>
-    </main>
-
-    <nav class="safari-fixed-nav">
-        <button type="button" onclick="switchPage('home')" id="btn-home" class="clickable-tab text-emerald-400 font-bold text-xs">
-            <span class="text-lg pointer-events-none">🏠</span>
-            <span class="mt-0.5 pointer-events-none">Home</span>
-        </button>
-        <button type="button" onclick="switchPage('order')" id="btn-order" class="clickable-tab text-gray-400 text-xs font-bold">
-            <span class="text-lg pointer-events-none">🥩</span>
-            <span class="mt-0.5 pointer-events-none">Order</span>
-        </button>
-        <button type="button" onclick="switchPage('history')" id="btn-history" class="clickable-tab text-gray-400 text-xs font-bold">
-            <span class="text-lg pointer-events-none">📊</span>
-            <span class="mt-0.5 pointer-events-none">History</span>
-        </button>
-    </nav>
-
-    <script>
-        const plan5Link = "https://square.link/u/M267qDh8";
-        const plan7Link = "https://square.link/u/FQ0c1Hm2";
-
-        const orderForm = document.getElementById('order-form');
-        const historyListEl = document.getElementById('order-history-list');
-
-        function switchPage(pageId) {
-            document.querySelectorAll('.app-page').forEach(p => {
-                p.classList.remove('active');
-            });
-            const targetPage = document.getElementById('page-' + pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-
-            document.querySelectorAll('.clickable-tab').forEach(b => {
-                b.classList.remove('text-emerald-400', 'font-bold');
-                b.classList.add('text-gray-400');
-            });
-            const targetBtn = document.getElementById('btn-' + pageId);
-            if (targetBtn) {
-                targetBtn.classList.remove('text-gray-400');
-                targetBtn.classList.add('text-emerald-400', 'font-bold');
-            }
-            window.scrollTo(0, 0);
-        }
-
-        let appState = JSON.parse(localStorage.getItem('tp_protein_club_state')) || { totalProtein: 0, orders: [] };
-
-        function updateUI() {
-            if (appState.orders.length === 0) {
-                historyListEl.innerHTML = `<p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>`;
-                return;
-            }
-            
-            historyListEl.innerHTML = appState.orders.map((o, idx) => {
-                const formattedDate = o.timestamp ? new Date(o.timestamp).toLocaleDateString() : 'Active';
-                return `
-                    <div class="bg-gray-950/40 border border-gray-800 rounded-xl p-4 flex flex-col space-y-2">
-                        <div class="flex justify-between items-center">
-                            <p class="font-bold text-gray-200 text-base">${o.plan === '5' ? '5-Day Intensive Plan' : '7-Day Full-Week Fuel'}</p>
-                            <span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-900/40 font-bold">PAID</span>
-                        </div>
-                        <p class="text-xs text-gray-400">🗓️ Pickup Area: Counter (Every Saturday)</p>
-                        <p class="text-[10px] text-gray-600">Ordered on: ${formattedDate}</p>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function checkPaymentCallback() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const payStatus = urlParams.get('pay');
-            const confirmedPlan = urlParams.get('plan');
-
-            if (payStatus === 'success' && confirmedPlan) {
-                const validOrder = {
-                    plan: confirmedPlan,
-                    timestamp: new Date().getTime()
-                };
-
-                if (appState.orders.length === 0 || (new Date().getTime() - appState.orders[0].timestamp > 10000)) {
-                    appState.orders.unshift(validOrder);
-                    localStorage.setItem('tp_protein_club_state', JSON.stringify(appState));
-                    alert("💳 Subscription Payment Verified!\nYour receipt has been added to history.");
-                }
-                
-                window.history.replaceState({}, document.title, window.location.pathname);
-                switchPage('history');
-            }
-        }
-
-        orderForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
-            const targetLink = selectedPlan === "5" ? plan5Link : plan7Link;
-            window.location.href = targetLink;
-        });
-
-        checkPaymentCallback();
-        updateUI();
-    </script>
-</body>
-</html>
+                            <div>
+                                <span class="font-bold text-sm text-white block">5
