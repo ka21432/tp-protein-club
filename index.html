@@ -27,7 +27,6 @@
         </div>
     </header>
 
-    <!-- HOME -->
     <main id="page-home" class="app-page active">
         <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 mb-6 shadow-xl">
             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Monthly Protein Intake Goal</h2>
@@ -44,7 +43,6 @@
         </div>
     </main>
 
-    <!-- ORDER -->
     <main id="page-order" class="app-page">
         <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
             <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2">Order & Schedule Pickup</h2>
@@ -65,17 +63,14 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between border border-gray-800 p-3 rounded-xl bg-gray-950/40">
-                    <div>
-                        <p class="text-sm font-bold text-white">Add Carbs (1kg Rice)</p>
-                        <p class="text-xs text-gray-400">Bulk container included</p>
-                    </div>
-                    <input type="checkbox" id="carb-option" class="w-5 h-5 accent-emerald-500 rounded cursor-pointer">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Choose Your Pickup Date</label>
+                    <input type="date" id="pickup-date" required class="w-full bg-gray-800 border border-gray-700 rounded-xl p-3 text-white focus:outline-none focus:border-emerald-500 [color-scheme:dark]">
+                    <p id="weekday-preview" class="text-xs text-emerald-400 mt-2 font-bold"></p>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Choose Sunday Pickup Date</label>
-                    <input type="date" id="pickup-date" required class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-white focus:outline-none focus:border-emerald-500 [color-scheme:dark]">
+                <div class="bg-amber-950/20 border border-amber-900/50 rounded-xl p-3 text-xs text-amber-400 font-semibold leading-relaxed">
+                    💡 Please enter your selected pickup date in the "Note/Custom Field" box on the next Square checkout screen!
                 </div>
 
                 <button type="submit" class="w-full bg-emerald-500 text-gray-950 font-black py-4 rounded-xl hover:bg-emerald-400 transition cursor-pointer shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-sm">
@@ -85,7 +80,6 @@
         </section>
     </main>
 
-    <!-- HISTORY -->
     <main id="page-history" class="app-page">
         <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">My Pickup History</h2>
@@ -95,7 +89,6 @@
         </section>
     </main>
 
-    <!-- NAVIGATION -->
     <nav class="fixed bottom-0 left-0 right-0 bg-gray-950 border-t border-gray-800 max-w-md mx-auto px-6 py-4 flex justify-around z-50">
         <button type="button" onclick="switchPage('home')" id="btn-home" class="nav-btn flex flex-col items-center text-emerald-400 font-bold text-xs">
             <span class="text-lg">🏠</span><span class="mt-1">Home</span>
@@ -109,6 +102,20 @@
     </nav>
 
     <script>
+        const plan5Link = "https://square.link/u/M267qDh8";
+        const plan7Link = "https://square.link/u/FQ0c1Hm2";
+
+        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const orderForm = document.getElementById('order-form');
+        const totalProteinEl = document.getElementById('total-protein');
+        const progressEl = document.getElementById('protein-progress');
+        const historyListEl = document.getElementById('order-history-list');
+        const pickupDateInput = document.getElementById('pickup-date');
+        const weekdayPreviewEl = document.getElementById('weekday-preview');
+
+        const todayStr = new Date().toISOString().split('T')[0];
+        pickupDateInput.min = todayStr;
+
         function switchPage(pageId) {
             document.querySelectorAll('.app-page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => {
@@ -121,24 +128,24 @@
             targetBtn.classList.add('text-emerald-400', 'font-bold');
         }
 
-        const orderForm = document.getElementById('order-form');
-        const totalProteinEl = document.getElementById('total-protein');
-        const progressEl = document.getElementById('protein-progress');
-        const historyListEl = document.getElementById('order-history-list');
-        const pickupDateInput = document.getElementById('pickup-date');
-
-        const todayStr = new Date().toISOString().split('T')[0];
-        pickupDateInput.min = todayStr;
+        pickupDateInput.addEventListener('change', function() {
+            if (this.value) {
+                const dateObj = new Date(this.value + 'T00:00:00');
+                const dayName = weekdays[dateObj.getDay()];
+                weekdayPreviewEl.textContent = `🎯 Selected Pickup Day: ${dayName}`;
+            } else {
+                weekdayPreviewEl.textContent = '';
+            }
+        });
 
         let appState = JSON.parse(localStorage.getItem('tp_protein_club_state')) || { totalProtein: 0, orders: [] };
 
-        // 🛠️ [NEW] 내역에서 날짜 변경을 실시간으로 처리해 주는 함수
         function changePickupDate(index, newDate) {
             if (!newDate) return;
             appState.orders[index].date = newDate;
             localStorage.setItem('tp_protein_club_state', JSON.stringify(appState));
             updateUI();
-            alert("📅 Pickup date has been updated successfully!");
+            alert("📅 Pickup date updated successfully!");
         }
 
         function updateUI() {
@@ -150,77 +157,38 @@
                 return;
             }
             
-            // 🛠️ [NEW UI] 날짜를 직접 변경할 수 있는 <input type="date"> 기능을 각 영수증 리스트에 탑재
-            historyListEl.innerHTML = appState.orders.map((o, idx) => `
-                <div class="bg-gray-950/40 border border-gray-800 rounded-xl p-4 flex flex-col space-y-3">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="font-bold text-gray-200 text-base">${o.plan === '5' ? '5-Day Intensive Plan' : '7-Day Full-Week Fuel'}</p>
-                            <p class="text-xs text-gray-500 mt-0.5">${o.carb ? '🍚 Rice Added' : 'No Extra Carbs'}</p>
+            historyListEl.innerHTML = appState.orders.map((o, idx) => {
+                const dateObj = new Date(o.date + 'T00:00:00');
+                const dayName = weekdays[dateObj.getDay()];
+                return `
+                    <div class="bg-gray-950/40 border border-gray-800 rounded-xl p-4 flex flex-col space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-bold text-gray-200 text-base">${o.plan === '5' ? '5-Day Intensive Plan' : '7-Day Full-Week Fuel'}</p>
+                                <p class="text-xs text-emerald-400 font-semibold mt-0.5">🗓️ Pickup on ${dayName}</p>
+                            </div>
+                            <span class="inline-block bg-emerald-950 text-emerald-400 text-xs font-bold px-2 py-1 rounded border border-emerald-900/50">+${o.proteinGained}g</span>
                         </div>
-                        <span class="inline-block bg-emerald-950 text-emerald-400 text-xs font-bold px-2 py-1 rounded border border-emerald-900/50">+${o.proteinGained}g</span>
+                        <div class="pt-2 border-t border-gray-900 flex flex-col space-y-1.5">
+                            <label class="text-[11px] font-bold uppercase tracking-wider text-gray-400">Modify Pickup Date:</label>
+                            <input type="date" value="${o.date}" min="${todayStr}" onchange="changePickupDate(${idx}, this.value)" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-xs text-emerald-400 font-semibold focus:outline-none focus:border-emerald-500 [color-scheme:dark]">
+                        </div>
                     </div>
-                    <div class="pt-2 border-t border-gray-900 flex flex-col space-y-1.5">
-                        <label class="text-[11px] font-bold uppercase tracking-wider text-gray-400">Change Pickup Date:</label>
-                        <input type="date" value="${o.date}" min="${todayStr}" onchange="changePickupDate(${idx}, this.value)" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-xs text-emerald-400 font-semibold focus:outline-none focus:border-emerald-500 [color-scheme:dark]">
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // 🔒 결제 검증 및 데이터 기록 로직
-        function checkPaymentCallback() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const payStatus = urlParams.get('pay');
-            const confirmedPlan = urlParams.get('plan');
-            
-            const pendingPickupDate = localStorage.getItem('tp_pending_date') || todayStr;
-            const pendingCarb = localStorage.getItem('tp_pending_carb') === 'true';
-
-            if (payStatus === 'success' && confirmedPlan) {
-                const proteinGained = parseInt(confirmedPlan) * 100;
-                
-                const validOrder = {
-                    plan: confirmedPlan,
-                    carb: pendingCarb,
-                    date: pendingPickupDate,
-                    proteinGained: proteinGained
-                };
-
-                if (appState.orders.length === 0 || appState.orders[0].date !== pendingPickupDate || appState.orders[0].plan !== confirmedPlan) {
-                    appState.orders.unshift(validOrder);
-                    appState.totalProtein += proteinGained;
-                    localStorage.setItem('tp_protein_club_state', JSON.stringify(appState));
-                    
-                    alert(`💳 Payment Verified!\n+${proteinGained}g of protein added.`);
-                }
-                
-                window.history.replaceState({}, document.title, window.location.pathname);
-                switchPage('history');
-            }
+                `;
+            }).join('');
         }
 
         orderForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
-            const carbChecked = document.getElementById('carb-option').checked;
             const chosenDate = pickupDateInput.value;
 
             localStorage.setItem('tp_pending_date', chosenDate);
-            localStorage.setItem('tp_pending_carb', carbChecked);
 
-            const links = { plan5: "https://square.link/u/Tmmkg1zJ", plan7: "https://square.link/u/n19ZUye1", rice: "https://square.link/u/yaMSfwWl" };
-            
-            if (carbChecked) {
-                alert("🍚 Rice option selected! opening checkout...");
-                window.open(links.rice, '_blank'); 
-                window.location.href = selectedPlan === "5" ? links.plan5 : links.plan7;
-            } else {
-                window.location.href = selectedPlan === "5" ? links.plan5 : links.plan7;
-            }
+            const targetLink = selectedPlan === "5" ? plan5Link : plan7Link;
+            window.location.href = targetLink;
         });
 
-        checkPaymentCallback();
         updateUI();
     </script>
 </body>
