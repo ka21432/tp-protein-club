@@ -7,11 +7,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f3f4f6; }
-        .nav-btn:active { transform: scale(0.9); transition: 0.1s; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f3f4f6; -webkit-tap-highlight-color: transparent; }
         .app-page { display: none; }
-        .app-page.active { display: block; animation: fadeIn 0.2s ease-in-out; }
+        .app-page.active { display: block; animation: fadeIn 0.15s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* 클릭 영역 강제 활성화용 스타일 */
+        .clickable-tab { cursor: pointer !important; pointer-events: auto !important; }
     </style>
 </head>
 <body class="p-4 max-w-md mx-auto pb-32">
@@ -53,77 +54,4 @@
             <p class="text-xs text-gray-400 leading-relaxed mb-4">
                 Want to secure your gains for the entire week? Save time and money by subscribing to our 5-Day or 7-Day meal prep plans.
             </p>
-            <button type="button" onclick="switchPage('order')" class="w-full text-center bg-gray-800 border border-gray-700 text-gray-200 font-bold py-3 rounded-xl hover:bg-gray-700 transition text-xs uppercase tracking-wider cursor-pointer">
-                View Subscription Plans 📅
-            </button>
-        </section>
-    </main>
-
-    <main id="page-order" class="app-page">
-        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
-            <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2">Order & Schedule Subscription</h2>
-            <form id="order-form" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Select Your Plan</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="border border-gray-700 rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950/20">
-                            <input type="radio" name="plan" value="5" checked class="sr-only">
-                            <span class="font-bold text-sm text-white">5-Day Plan</span>
-                            <span class="text-xs text-emerald-400 font-bold mt-1">$42 / wk</span>
-                        </label>
-                        <label class="border border-gray-700 rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:border-emerald-500 transition has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950/20">
-                            <input type="radio" name="plan" value="7" class="sr-only">
-                            <span class="font-bold text-sm text-white">7-Day Plan</span>
-                            <span class="text-xs text-emerald-400 font-bold mt-1">$59 / wk</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="bg-amber-950/20 border border-amber-900/50 rounded-xl p-3 text-xs text-amber-400 font-semibold leading-relaxed">
-                    📢 Notice: Subscription meals are freshly packed and <strong>ready for pickup every Saturday</strong>. No date selection required!
-                </div>
-
-                <button type="submit" class="w-full bg-emerald-500 text-gray-950 font-black py-4 rounded-xl hover:bg-emerald-400 transition cursor-pointer shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-sm">
-                    Proceed to Secure Checkout
-                </button>
-            </form>
-        </section>
-    </main>
-
-    <main id="page-history" class="app-page">
-        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">My Order History</h2>
-            <div id="order-history-list" class="space-y-4 text-sm">
-                <p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>
-            </div>
-        </section>
-    </main>
-
-    <nav class="fixed bottom-0 left-0 right-0 bg-gray-950 border-t border-gray-800 max-w-md mx-auto px-6 py-4 flex justify-around z-50">
-        <button type="button" onclick="switchPage('home')" id="btn-home" class="nav-btn flex flex-col items-center text-emerald-400 font-bold text-xs">
-            <span class="text-lg">🏠</span><span class="mt-1">Home</span>
-        </button>
-        <button type="button" onclick="switchPage('order')" id="btn-order" class="nav-btn flex flex-col items-center text-gray-400 text-xs font-bold">
-            <span class="text-lg">🥩</span><span class="mt-1">Order</span>
-        </button>
-        <button type="button" onclick="switchPage('history')" id="btn-history" class="nav-btn flex flex-col items-center text-gray-400 text-xs font-bold">
-            <span class="text-lg">📊</span><span class="mt-1">History</span>
-        </button>
-    </nav>
-
-    <script>
-        const plan5Link = "https://square.link/u/M267qDh8";
-        const plan7Link = "https://square.link/u/FQ0c1Hm2";
-
-        const orderForm = document.getElementById('order-form');
-        const historyListEl = document.getElementById('order-history-list');
-
-        function switchPage(pageId) {
-            document.querySelectorAll('.app-page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => {
-                b.classList.remove('text-emerald-400', 'font-bold');
-                b.classList.add('text-gray-400');
-            });
-            document.getElementById('page-' + pageId).classList.add('active');
-            const targetBtn = document.getElementById('btn-' + pageId);
-            targetBtn.classList.
+            
