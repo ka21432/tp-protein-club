@@ -4,76 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>T&P PROTEIN CLUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #0b0f19; 
-            color: #f3f4f6; 
-            -webkit-tap-highlight-color: transparent;
-            padding: 16px;
-            max-width: 450px;
-            margin: 0 auto;
-            padding-bottom: 110px;
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-gray-100 max-w-md mx-auto p-4 pb-32">
+
+    <header class="flex justify-between items-center my-6 border-b border-gray-800 pb-4">
+        <div>
+            <h1 class="text-3xl font-black tracking-tight text-emerald-400">T&P</h1>
+            <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Protein Club</p>
+        </div>
+        <div class="text-right">
+            <span class="text-xs text-gray-400">Welcome back,</span>
+            <p class="font-extrabold text-sm text-emerald-400">ELITE ATHLETE 🔥</p>
+        </div>
+    </header>
+
+    <main id="page-home" class="page-content space-y-6">
+        <section class="bg-gradient-to-br from-emerald-950/40 to-gray-900 border border-emerald-500/30 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-emerald-500 text-gray-950 text-[10px] font-black uppercase px-3 py-1 rounded-bl-xl tracking-wider z-10">
+                Daily Fresh
+            </div>
+            
+            <div class="w-full h-44 rounded-xl overflow-hidden mb-4 border border-gray-800">
+                <img src="IMG_4262.png" class="w-full h-full object-cover" alt="Today's Protein Meal" onerror="this.style.display='none';">
+            </div>
+
+            <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">Hungry Right Now?</h2>
+            <h3 class="text-2xl font-black text-white leading-tight mb-2">Today's Protein Meal</h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                Grab a high-precision, fresh protein box directly at the counter today. No subscription required.
+            </p>
+            <a href="https://square.link/u/5pX1f2mX" class="block w-full text-center bg-emerald-500 text-gray-950 font-black py-3.5 rounded-xl hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/10 uppercase tracking-wider text-xs">
+                Order Single Meal Now 🥩
+            </a>
+        </section>
+
+        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-amber-500 text-gray-950 text-[9px] font-black uppercase px-2.5 py-1 rounded-bl-xl tracking-wider">
+                💥 100g Protein Assured
+            </div>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Weekly Fueling</h2>
+            <h3 class="text-xl font-extrabold text-white mb-2">Weekly Subscription</h3>
+            <p class="text-xs text-emerald-400 font-bold mb-2">
+                🎯 Hit your daily macro effortlessly with 100g of pure protein every single day.
+            </p>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                Want to secure your gains for the entire week? Save time and money by subscribing to our 5-Day or 7-Day meal prep plans.
+            </p>
+            <button type="button" onclick="switchPage('order')" class="w-full text-center bg-gray-800 border border-gray-700 text-gray-200 font-bold py-3 rounded-xl hover:bg-gray-700 transition text-xs uppercase tracking-wider cursor-pointer">
+                View Subscription Plans 📅
+            </button>
+        </section>
+    </main>
+
+    <main id="page-order" class="page-content hidden space-y-6">
+        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
+            <h2 class="text-lg font-bold text-white mb-1 border-b border-gray-800 pb-2">Order Subscription</h2>
+            
+            <form id="order-form" class="space-y-4 pt-2">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Select Your Plan</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="border border-gray-700 rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:border-emerald-500 transition bg-gray-950/40">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <input type="radio" name="plan" value="5" checked class="w-4 h-4 accent-emerald-500">
+                                <span class="font-bold text-sm text-white">5-Day Plan</span>
+                            </div>
+                            <span class="text-[10px] text-emerald-400 font-extrabold block pl-6">100g Protein / Day</span>
+                            <span class="text-xs text-gray-400 font-bold mt-2 block pl-6">$42 / wk</span>
+                        </label>
+                        
+                        <label class="border border-gray-700 rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:border-emerald-500 transition bg-gray-950/40">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <input type="radio" name="plan" value="7" class="w-4 h-4 accent-emerald-500">
+                                <span class="font-bold text-sm text-white">7-Day Plan</span>
+                            </div>
+                            <span class="text-[10px] text-emerald-400 font-extrabold block pl-6">100g Protein / Day</span>
+                            <span class="text-xs text-gray-400 font-bold mt-2 block pl-6">$59 / wk</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-emerald-950/20 border border-emerald-900/40 rounded-xl p-3 text-xs text-emerald-400 font-semibold leading-relaxed">
+                    💪 <strong>Precision Nutrition:</strong> Each day's pack is strictly engineered to deliver <strong>100 grams of high-quality protein</strong>.
+                </div>
+
+                <div class="bg-amber-950/20 border border-amber-900/50 rounded-xl p-3 text-xs text-amber-400 font-semibold leading-relaxed">
+                    📢 Notice: Subscription meals are freshly packed and <strong>ready for pickup every Saturday</strong>. No date selection required!
+                </div>
+
+                <button type="submit" class="w-full bg-emerald-500 text-gray-950 font-black py-4 rounded-xl hover:bg-emerald-400 transition cursor-pointer shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-sm">
+                    Proceed to Secure Checkout
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <main id="page-history" class="page-content hidden space-y-6">
+        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-xl">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">My Order History</h2>
+            <div id="order-history-list" class="space-y-4 text-sm">
+                <p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>
+            </div>
+        </section>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 h-[75px] bg-[#030712] border-t border-gray-800 flex justify-around items-center z-50 max-w-md mx-auto px-4 pb-safe">
+        <button type="button" onclick="switchPage('home')" id="tab-home" class="tab-btn flex flex-col items-center justify-center w-1/3 h-full text-emerald-400 font-bold text-xs">
+            <span class="text-xl mb-0.5 pointer-events-none">🏠</span>
+            <span class="pointer-events-none">Home</span>
+        </button>
+        <button type="button" onclick="switchPage('order')" id="tab-order" class="tab-btn flex flex-col items-center justify-center w-1/3 h-full text-gray-400 text-xs font-bold">
+            <span class="text-xl mb-0.5 pointer-events-none">🥩</span>
+            <span class="pointer-events-none">Order</span>
+        </button>
+        <button type="button" onclick="switchPage('history')" id="tab-history" class="tab-btn flex flex-col items-center justify-center w-1/3 h-full text-gray-400 text-xs font-bold">
+            <span class="text-xl mb-0.5 pointer-events-none">📊</span>
+            <span class="pointer-events-none">History</span>
+        </button>
+    </nav>
+
+    <script>
+        const plan5Link = "https://square.link/u/M267qDh8";
+        const plan7Link = "https://square.link/u/FQ0c1Hm2";
+
+        const orderForm = document.getElementById('order-form');
+        const historyListEl = document.getElementById('order-history-list');
+
+        function switchPage(pageId) {
+            // 1. 모든 페이지 숨김
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            
+            // 2. 선택한 페이지 활성화
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) targetPage.classList.remove('hidden');
+
+            // 3. 하단 탭 색상 초기화 및 하이라이트
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('text-emerald-400', 'font-bold');
+                b.classList.add('text-gray-400');
+            });
+            const targetTab = document.getElementById('tab-' + pageId);
+            if (targetTab) {
+                targetTab.classList.remove('text-gray-400');
+                targetTab.classList.add('text-emerald-400', 'font-bold');
+            }
+            window.scrollTo(0, 0);
         }
-        
-        header { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; margin-bottom: 24px; border-b: 1px solid #1f2937; padding-bottom: 16px; }
-        .logo-title { text-transform: uppercase; letter-spacing: 0.05em; font-size: 28px; font-weight: 900; color: #34d399; line-height: 1; }
-        .logo-sub { text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; font-weight: 700; color: #9ca3af; margin-top: 4px; }
-        .welcome-box { text-align: right; }
-        .welcome-sub { font-size: 11px; color: #9ca3af; }
-        .welcome-main { font-weight: 800; font-size: 14px; color: #34d399; margin-top: 2px; }
 
-        .app-page { display: none !important; width: 100% !important; }
-        .app-page.active { display: block !important; animation: fadeIn 0.15s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .card-container {
-            background: linear-gradient(135deg, #064e3b 0%, #111827 100%);
-            border: 1px solid rgba(52, 211, 153, 0.2);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-        .card-sub-container {
-            background-color: #111827;
-            border: 1px solid #1f2937;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        // 브라우저 캐시 에러 전면 방어 시스템 적용
+        let appState = { totalProtein: 0, orders: [] };
+        try {
+            const savedState = localStorage.getItem('tp_protein_club_state');
+            if (savedState) appState = JSON.parse(savedState);
+        } catch(e) {
+            console.error("State reset due to encryption mismatch", e);
         }
 
-        .badge-daily { position: absolute; top: 0; right: 0; background-color: #10b981; color: #030712; font-size: 10px; font-weight: 900; text-transform: uppercase; padding: 4px 12px; border-bottom-left-radius: 12px; letter-spacing: 0.05em; }
-        .badge-assured { position: absolute; top: 0; right: 0; background-color: #f59e0b; color: #030712; font-size: 9px; font-weight: 900; text-transform: uppercase; padding: 4px 10px; border-bottom-left-radius: 12px; letter-spacing: 0.05em; }
+        function updateUI() {
+            if (!historyListEl) return;
+            if (!appState.orders || appState.orders.length === 0) {
+                historyListEl.innerHTML = `<p class="text-gray-500 text-xs text-center py-4">No active orders found.</p>`;
+                return;
+            }
+            
+            historyListEl.innerHTML = appState.orders.map((o) => {
+                const formattedDate = o.timestamp ? new Date(o.timestamp).toLocaleDateString() : 'Active';
+                return `
+                    <div class="bg-gray-950/40 border border-gray-800 rounded-xl p-4 flex flex-col space-y-2">
+                        <div class="flex justify-between items-center">
+                            <p class="font-bold text-gray-200 text-base">${o.plan === '5' ? '5-Day Intensive Plan' : '7-Day Full-Week Fuel'}</p>
+                            <span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-900/40 font-bold">PAID</span>
+                        </div>
+                        <p class="text-xs text-emerald-400 font-semibold">💪 Daily 100g Protein Package Included</p>
+                        <p class="text-xs text-gray-400">🗓️ Pickup Area: Counter (Every Saturday)</p>
+                        <p class="text-[10px] text-gray-600">Ordered on: ${formattedDate}</p>
+                    </div>
+                `;
+            }).join('');
+        }
 
-        .img-wrapper { width: 100%; height: 180px; border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid #1f2937; }
-        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        function checkPaymentCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const payStatus = urlParams.get('pay');
+            const confirmedPlan = urlParams.get('plan');
 
-        .card-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #34d399; margin-bottom: 4px; }
-        .card-tag-gray { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 4px; }
-        .card-title { font-size: 22px; font-weight: 900; color: #ffffff; margin-bottom: 8px; line-height: 1.2; }
-        .card-desc { font-size: 12px; color: #9ca3af; line-height: 1.6; margin-bottom: 16px; }
-        .highlight-text { font-size: 12px; color: #34d399; font-weight: 700; margin-bottom: 8px; }
+            if (payStatus === 'success' && confirmedPlan) {
+                const validOrder = {
+                    plan: confirmedPlan,
+                    timestamp: new Date().getTime()
+                };
 
-        .btn-primary { display: block; width: 100%; text-align: center; background-color: #10b981; color: #030712; font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; padding: 14px; border-radius: 12px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; }
-        .btn-primary:hover { background-color: #34d399; }
-        .btn-secondary { display: block; width: 100%; text-align: center; background-color: #1f2937; color: #f3f4f6; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; padding: 12px; border-radius: 12px; border: 1px solid #374151; cursor: pointer; }
-        .btn-secondary:hover { background-color: #374151; }
+                if (!appState.orders) appState.orders = [];
+                
+                if (appState.orders.length === 0 || (new Date().getTime() - appState.orders[0].timestamp > 10000)) {
+                    appState.orders.unshift(validOrder);
+                    localStorage.setItem('tp_protein_club_state', JSON.stringify(appState));
+                }
+                
+                window.history.replaceState({}, document.title, window.location.pathname);
+                switchPage('history');
+            }
+        }
 
-        .plan-grid { display: flex; gap: 12px; margin-top: 12px; margin-bottom: 16px; }
-        .plan-box-label { flex: 1; border: 1px solid #374151; border-radius: 12px; padding: 12px; background-color: rgba(3, 7, 18, 0.4); cursor: pointer; display: block; }
-        .plan-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #ffffff; }
-        .plan-header input { accent-color: #10b981; width: 16px; height: 16px; }
-        .plan-subtext { font-size: 10px; color: #34d399; font-weight: 800; display: block; margin-top: 4px; padding-left: 24px; }
-        .plan-price { font-size: 12px; color: #9ca3af; font-weight: 700; display: block; margin-top: 8px; padding-left: 24px; }
+        if (orderForm) {
+            orderForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const selectedRadio = document.querySelector('input[name="plan"]:checked');
+                if (selectedRadio) {
+                    const targetLink = selectedRadio.value === "5" ? plan5Link : plan7Link;
+                    window.location.href = targetLink;
+                }
+            });
+        }
 
-        .info-box-green { background-color: rgba(6, 78, 59, 0.2); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 12px; font-size: 11px; color: #34d399; line-height: 1.5; margin-bottom: 12px; }
-        .info-box-amber { background-color: rgba(120, 53, 4, 0.2); border: 1px solid rgba(245, 158, 11, 0.3); border
+        checkPaymentCallback();
+        updateUI();
+    </script>
+</body>
+</html>
