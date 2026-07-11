@@ -7,7 +7,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
         
-        /* 전체 브라우저 화면 리셋 및 아이패드 강제 맞춤 */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: 'Inter', sans-serif; 
@@ -17,10 +16,9 @@
             padding: 16px;
             max-width: 450px;
             margin: 0 auto;
-            padding-bottom: 110px; /* 하단 바와 안 겹치게 여백 확보 */
+            padding-bottom: 110px;
         }
         
-        /* 헤더 스타일 */
         header { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; margin-bottom: 24px; border-b: 1px solid #1f2937; padding-bottom: 16px; }
         .logo-title { text-transform: uppercase; letter-spacing: 0.05em; font-size: 28px; font-weight: 900; color: #34d399; line-height: 1; }
         .logo-sub { text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; font-weight: 700; color: #9ca3af; margin-top: 4px; }
@@ -28,12 +26,10 @@
         .welcome-sub { font-size: 11px; color: #9ca3af; }
         .welcome-main { font-weight: 800; font-size: 14px; color: #34d399; margin-top: 2px; }
 
-        /* 페이지 스위칭 레이아웃 */
         .app-page { display: none !important; width: 100% !important; }
         .app-page.active { display: block !important; animation: fadeIn 0.15s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* 공통 카드 디자인 */
         .card-container {
             background: linear-gradient(135deg, #064e3b 0%, #111827 100%);
             border: 1px solid rgba(52, 211, 153, 0.2);
@@ -55,9 +51,29 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
-        /* 배지 스타일 */
         .badge-daily { position: absolute; top: 0; right: 0; background-color: #10b981; color: #030712; font-size: 10px; font-weight: 900; text-transform: uppercase; padding: 4px 12px; border-bottom-left-radius: 12px; letter-spacing: 0.05em; }
         .badge-assured { position: absolute; top: 0; right: 0; background-color: #f59e0b; color: #030712; font-size: 9px; font-weight: 900; text-transform: uppercase; padding: 4px 10px; border-bottom-left-radius: 12px; letter-spacing: 0.05em; }
 
-        /* 이미지 스타일 구속 */
-        .img-wrapper
+        .img-wrapper { width: 100%; height: 180px; border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid #1f2937; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .card-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #34d399; margin-bottom: 4px; }
+        .card-tag-gray { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 4px; }
+        .card-title { font-size: 22px; font-weight: 900; color: #ffffff; margin-bottom: 8px; line-height: 1.2; }
+        .card-desc { font-size: 12px; color: #9ca3af; line-height: 1.6; margin-bottom: 16px; }
+        .highlight-text { font-size: 12px; color: #34d399; font-weight: 700; margin-bottom: 8px; }
+
+        .btn-primary { display: block; width: 100%; text-align: center; background-color: #10b981; color: #030712; font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; padding: 14px; border-radius: 12px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn-primary:hover { background-color: #34d399; }
+        .btn-secondary { display: block; width: 100%; text-align: center; background-color: #1f2937; color: #f3f4f6; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; padding: 12px; border-radius: 12px; border: 1px solid #374151; cursor: pointer; }
+        .btn-secondary:hover { background-color: #374151; }
+
+        .plan-grid { display: flex; gap: 12px; margin-top: 12px; margin-bottom: 16px; }
+        .plan-box-label { flex: 1; border: 1px solid #374151; border-radius: 12px; padding: 12px; background-color: rgba(3, 7, 18, 0.4); cursor: pointer; display: block; }
+        .plan-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #ffffff; }
+        .plan-header input { accent-color: #10b981; width: 16px; height: 16px; }
+        .plan-subtext { font-size: 10px; color: #34d399; font-weight: 800; display: block; margin-top: 4px; padding-left: 24px; }
+        .plan-price { font-size: 12px; color: #9ca3af; font-weight: 700; display: block; margin-top: 8px; padding-left: 24px; }
+
+        .info-box-green { background-color: rgba(6, 78, 59, 0.2); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 12px; font-size: 11px; color: #34d399; line-height: 1.5; margin-bottom: 12px; }
+        .info-box-amber { background-color: rgba(120, 53, 4, 0.2); border: 1px solid rgba(245, 158, 11, 0.3); border
