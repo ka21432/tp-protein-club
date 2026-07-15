@@ -25,8 +25,8 @@
         }
         
         h1 { font-size: 58px; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: -2px; line-height: 1.1; }
-        h2 { font-size: 38px; font-weight: 900; margin: 10px 0 30px 0; text-transform: uppercase; color: #333; }
-        p.desc { font-size: 22px; font-weight: 700; line-height: 1.4; margin-bottom: 30px; color: #444; }
+        h2 { font-size: 38px; font-weight: 900; margin: 15px 0 35px 0; text-transform: uppercase; color: #333; }
+        p.desc { font-size: 24px; font-weight: 700; line-height: 1.4; margin-bottom: 40px; color: #444; }
         
         .highlight-box {
             border: 5px solid #000;
@@ -34,7 +34,7 @@
             font-size: 28px;
             font-weight: 900;
             text-transform: uppercase;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 40px auto;
             display: inline-block;
             letter-spacing: 1px;
             box-shadow: 8px 8px 0px #000;
@@ -44,31 +44,21 @@
             text-align: left; 
             max-width: 650px; 
             margin: 0 auto 30px auto; 
-            font-size: 20px; 
+            font-size: 22px; 
             font-weight: 700; 
-            line-height: 1.8; 
+            line-height: 2.0; 
             list-style-type: none; 
             padding: 0; 
         }
         ul li:before { content: '✔️ '; margin-right: 10px; }
         
-        .promo-box {
-            background-color: #000;
-            color: #fff;
-            padding: 25px;
-            margin: 0 auto 30px auto;
-            max-width: 700px;
-            border-radius: 12px;
-        }
-        .promo-box h3 { margin: 0 0 12px 0; font-size: 26px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
-        .promo-box p { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.4; }
-        .promo-box p.small { font-size: 16px; font-weight: 400; margin-top: 10px; font-style: italic; color: #ccc; }
-        
         .qr-section { margin-top: auto; padding-top: 20px; }
-        .qr-text { font-size: 32px; font-weight: 900; margin-bottom: 20px; letter-spacing: 1px; }
-        .qr-code { width: 220px; height: 220px; margin: 0 auto; border: 6px solid #000; padding: 10px; display: block; object-fit: contain; }
+        .qr-text { font-size: 34px; font-weight: 900; margin-bottom: 25px; letter-spacing: 1px; }
+        .qr-code { width: 250px; height: 250px; margin: 0 auto; border: 6px solid #000; padding: 10px; display: block; object-fit: contain; }
         
-        .footer { margin-top: 30px; font-size: 32px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; }
+        .footer { margin-top: 25px; }
+        .footer-title { font-size: 32px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+        .footer-address { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; color: #333; display: flex; justify-content: center; align-items: center; gap: 15px; }
     </style>
 </head>
 <body>
@@ -84,24 +74,21 @@
         <ul>
             <li><strong>Precision Nutrition:</strong> Exactly 100g of high-quality protein per day.</li>
             <li><strong>Pick Your Plan:</strong> 5-Day Intensive or 7-Day Full-Week Fuel.</li>
-            <li><strong>Zero Hassle:</strong> Freshly packed and ready for pickup EVERY SATURDAY.</li>
+            <li><strong>Zero Hassle:</strong> Freshly packed and ready for pickup.</li>
         </ul>
-
-        <div class="promo-box">
-            <h3>🎁 LA FITNESS & PLANET FITNESS MEMBERS 🎁</h3>
-            <p>Subscribe this week and get a FREE<br>T&P LIMITED EDITION COOLER BAG!</p>
-            <p class="small">(Only 20 spots available for this week's pickup!)</p>
-        </div>
     </div>
 
-    <!-- 오류 내는 자폭 코드(onerror) 완전히 삭제함 -->
     <div class="qr-section">
         <div class="qr-text">SCAN TO SECURE YOUR BOX 👇</div>
         <img src="HzmkoR.png" alt="QR Code" class="qr-code">
     </div>
 
     <div class="footer">
-        T&P PROTEIN CLUB
+        <div class="footer-title">T&P PROTEIN CLUB</div>
+        <div class="footer-address">
+            <span>📍 13027 Aurora Ave N, Seattle, WA 98133</span>
+            <span>⏰ 11AM - 8PM</span>
+        </div>
     </div>
 </body>
 </html>
